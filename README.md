@@ -1,47 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+	</head>
+	<body>
+		<script src="js/three.js"></script>
+		<script>
+			const scene = new THREE.Scene();
+			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-<main>
-    <style>
-         
-    div {
-        padding: 16px;
-        background-color: #00FF00;
-      }
-    h2{
-      color: green;
-      font-size: 50px;
-    }
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
-  
-  h1{
-      font-family: 'Oswald';
-      font-size: 40px;
-  }
-  p{
-      font-family: monospace;
-  }
-  p {
-    border: white 8px groove;
-  }
-   body {
-      background: lightgray;
-    }
-  
-  </style>
-  <h2>R&eacute;sum&eacute;</h2>
-  <img src="https://i.pinimg.com/originals/bb/ed/b4/bbedb42371440eba6b9c626749533f8e.jpg" alt="image.jgp" width="200" height="250" />
-  <div>
-      <h1>Jordy Aram Hern&aacute;ndez S&aacute;nchez - 21 years</h1>
-    </div>
-   <body>
-  <p>Nationality: Mexican.</p>
-  <p>Last study grade: University (current).</p>
-  <p>Work experience: None.</p>
-  <p>Professional interests: Structure types and big data.</p>
-  <p>Most used programing language: Python.</p>
-  <p>Languages: English, Spanish, a litte bit of Portugese and Frech (just the basics).</p>
-  </body>
-  <h4>Contact Info:</h4>
-  <a href="https://www.facebook.com/jordy.sanchez.213">Facebook</a> &nbsp; &nbsp; <a href=" https://www.linkedin.com/in/jordy-hern%C3%A1ndez-9808921b7/">LinkedIn</a>&nbsp; &nbsp; &nbsp;<a href="3781134023">Cellphone</a></main>
-  
+			const renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			const geometry = new THREE.BoxGeometry();
+			const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			const cube = new THREE.Mesh( geometry, material );
+			scene.add( cube );
+
+			camera.position.z = 5;
+
+			const animate = function () {
+				requestAnimationFrame( animate );
+
+				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
+
+				renderer.render( scene, camera );
+			};
+
+			animate();
+		</script>
+	</body>
+</html>
