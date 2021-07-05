@@ -1,1 +1,1 @@
-<?php require_once("index.js" ) ?>
+<?php require_once("public/index.html" ) ?>
