@@ -1,24 +1,30 @@
-'use strict';
+var express = require('express');
+var socket = require('socket.io');
 
-const express = require('express');
-const { Server } = require('ws');
-
-const PORT = process.env.PORT || 3000;
-const INDEX = '/index.html';
-
-const server = express()
-  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
-  .listen(PORT, () => console.log(`Listening on ${PORT}`));
-
-const wss = new Server({ server });
-
-wss.on('connection', (ws) => {
-  console.log('Client connected');
-  ws.on('close', () => console.log('Client disconnected'));
+// App setup
+var app = express();
+var server = app.listen(80, function(){
+    console.log('listening for requests on port 4000,');
 });
 
-setInterval(() => {
-  wss.clients.forEach((client) => {
-    client.send(new Date().toTimeString());
-  });
-}, 1000);
+// Static files
+app.use(express.static('public'));
+
+// Socket setup & pass server
+var io = socket(server);
+io.on('connection', (socket) => {
+
+    console.log('made socket connection', socket.id);
+
+    // Handle chat event
+    socket.on('chat', function(data){
+        // console.log(data);
+        io.sockets.emit('chat', data);
+    });
+
+    // Handle typing event
+    socket.on('typing', function(data){
+        socket.broadcast.emit('typing', data);
+    });
+
+});
