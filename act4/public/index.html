@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf=8">
-        <title>WebSockets 101</title>
-        <link href="/act4/public/css/styless.css" rel = "stylesheet"/>
+        <meta charset="utf-8">
+        <title>WebScockets 101</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+        <link href="styless.css" rel="stylesheet" />
     </head>
     <body>
-        <h1>Wow, you see me!</h1>
+        <div id="mario-chat">
+            <h2>Me and the boyz chatting</h2>
+            <div id="chat-window">
+                <div id="output"></div>
+                <div id="feedback"></div>
+            </div>
+            <input id="handle" type="text" placeholder="Usuario" />
+            <input id="message" type="text" placeholder="Mensaje" />
+            <button id="send">Enviar</button>
+        </div>
+        <script src="chat.js"></script>
+
 
     </body>
+    
 </html>
