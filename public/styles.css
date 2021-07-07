@@ -6,6 +6,9 @@ h2{
     font-size: 18px;
     padding: 10px 20px;
     color: #575ed8;
+    background: #f9f9f9;
+    border: 1px solid #575ed8;
+    border-radius: 50px;
 }
 
 #mario-chat{
